@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./vendor/react.production.min.js"></script>
+<script src="./vendor/react-dom.production.min.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>АПЛ — Академия промышленных лидеров</title>
+<link rel="icon" type="image/svg+xml" href="brand/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="brand/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'Pangea'; src: url('fonts/Pangea-Regular.otf') format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Pangea'; src: url('fonts/Pangea-Medium.otf') format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Pangea'; src: url('fonts/Pangea-SemiBold.otf') format('opentype'); font-weight: 600; font-style: normal; font-display: swap; }
+  html, body { margin: 0; padding: 0; background: #000000; }
+  body { font-family: Pangea, Montserrat, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #FFFFFF; text-decoration: none; }
+  a:hover { color: #B999FF; }
+  /* 09 — инфографика: наведение на месяц и рост столбцов при появлении */
+  [data-s9-cols]:hover [data-s9-col]:not(:hover) { opacity: .45; }
+  [data-s9-col] { cursor: default; }
+  [data-s9-anim] [data-s9-fill] { transform: scaleY(0); transition: transform 900ms cubic-bezier(.2,.7,.2,1) var(--d, 0ms); }
+  [data-s9-anim][data-s9-in] [data-s9-fill] { transform: scaleY(1); }
+  @media (prefers-reduced-motion: reduce) { [data-s9-anim] [data-s9-fill] { transform: none; transition: none; } }
+</style>
+</helmet>
+<template id="__bundler_thumbnail" data-bg-color="#000000">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#000000"></rect>
+    <text x="600" y="450" text-anchor="middle" font-family="Pangea, Montserrat, sans-serif" font-size="300" font-weight="400" fill="#854DFF">апл</text>
+  </svg>
+</template>
+
+<div data-fixed-header="" style="position: fixed; top: 0; left: 0; width: 100%; height: 72px; z-index: 100; background: rgba(0,0,0,.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,.08); opacity: 0; transform: translateY(-100%); transition: opacity 240ms ease, transform 240ms ease; pointer-events: none;">
+  <div style="width: 100%; max-width: 1320px; height: 100%; margin: 0 auto; padding: 0 80px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+    <a href="#" aria-label="АПЛ — Академия промышленных лидеров" style="display: flex; align-items: center; height: 28px;"><img src="brand/logo-base-white.svg" alt="АПЛ" style="display: block; height: 28px; width: auto;"></a>
+    <a href="#apply" data-header-cta="" style="display: inline-flex; align-items: center; background: #854DFF; color: #FFFFFF; border-radius: 999px; padding: 12px 28px; font-size: 15px; line-height: 20px; font-weight: 500; transition: opacity 180ms ease;" style-hover="opacity: .85; color: #FFFFFF;">Стать резидентом</a>
+  </div>
+</div>
+
+<section data-screen-label="01 Hero" style="position: relative; min-height: 720px; height: 100vh; background: #000000; overflow: hidden;">
+
+  <img src="uploads/production-hall.jpg" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 55%; filter: grayscale(100%) brightness(.45) contrast(1.05);">
+  <div style="position: absolute; inset: 0; background: linear-gradient(160deg, #0C0C0C 0%, rgba(133,77,255,.35) 74%, rgba(185,153,255,.2) 100%);"></div>
+
+  <header style="position: absolute; top: 0; left: 0; right: 0; height: 72px; display: flex; align-items: center; z-index: 2;">
+    <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+      <img src="brand/logo-base-white.svg" alt="АПЛ — Академия промышленных лидеров" style="display: block; height: 32px; width: auto;">
+      <a href="#apply" style="display: inline-flex; align-items: center; background: #854DFF; color: #FFFFFF; border-radius: 999px; padding: 12px 28px; font-size: 14px; line-height: 20px; font-weight: 500; transition: opacity 180ms ease;" style-hover="opacity: .85; color: #FFFFFF;">Подать заявку</a>
+    </div>
+  </header>
+
+  <div style="position: relative; z-index: 1; min-height: 720px; height: 100%; box-sizing: border-box; padding-top: 112px; padding-bottom: 64px; display: flex; align-items: center;">
+    <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box; display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;">
+      <div style="grid-column: span 8; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 28px;">
+        <div style="font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #B3B3B3;">Закрытое профессиональное сообщество</div>
+        <h1 style="margin: 0; max-width: 780px; font-size: clamp(44px, 5.6vw, 80px); line-height: 1.05; font-weight: 400; letter-spacing: -0.02em; color: #FFFFFF;">Академия промышленных<br>лидеров</h1>
+        <div style="display: flex; flex-direction: column; gap: 16px; max-width: 520px;">
+          <p style="margin: 0; font-size: 20px; line-height: 30px; color: #B3B3B3; text-wrap: pretty;">Среда, где собственники и руководители производственных компаний разбирают реальные задачи своих предприятий — с теми, кто проходил это сам.</p>
+          <p style="margin: 0; font-size: 20px; line-height: 30px; color: #B3B3B3; text-wrap: pretty;">Отбор по заявке. Четыре месяца программы и сообщество, которое остаётся после неё.</p>
+        </div>
+        <a href="#apply" style="display: inline-flex; align-items: center; background: #854DFF; color: #FFFFFF; border-radius: 999px; padding: 18px 36px; font-size: 17px; line-height: 22px; font-weight: 500; transition: opacity 180ms ease;" style-hover="opacity: .85; color: #FFFFFF;">Подать заявку</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section data-screen-label="02 Проблема" style="background: #000000; padding: 72px 0;">
+  <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box;">
+
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;">
+      <div style="grid-column: span 8; min-width: 0;">
+        <div style="font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #B3B3B3;">Проблема</div>
+        <h2 data-s2-h2="" style="margin: 24px 0 0; max-width: 720px; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; font-weight: 400; letter-spacing: -0.015em; color: #FFFFFF;">Производство — бизнес,<br>где цена каждого решения<br>особенно высока.</h2>
+        <p style="margin: 24px 0 0; max-width: 620px; font-size: 20px; line-height: 30px; color: #B3B3B3; text-wrap: pretty;">Каждый день собственник производства принимает решения, которые влияют на людей, оборудование, прибыль и будущее компании.</p>
+      </div>
+    </div>
+
+    <div data-s2-bento="" style="margin-top: 48px; display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(3, minmax(150px, auto)); gap: 24px;">
+      <div data-s2-tile="" style="grid-column: 1 / 3; grid-row: 1 / 3; display: flex; align-items: end; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box; min-width: 0; overflow-wrap: anywhere; hyphens: auto; font-size: clamp(20px, 2.2vw, 32px); line-height: 1.25; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Как масштабироваться, не потеряв управляемость?</div>
+      <div data-s2-tile="" style="grid-column: 3 / 5; grid-row: 1 / 2; display: flex; align-items: end; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box; min-width: 0; overflow-wrap: anywhere; hyphens: auto; font-size: clamp(18px, 1.9vw, 28px); line-height: 1.28; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Как внедрить автоматизацию?</div>
+      <div data-s2-tile="" style="grid-column: 5 / 7; grid-row: 1 / 3; display: flex; align-items: end; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box; min-width: 0; overflow-wrap: anywhere; hyphens: auto; font-size: clamp(20px, 2.2vw, 32px); line-height: 1.25; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Как пройти кризис без остановки предприятия?</div>
+      <div data-s2-tile="" style="grid-column: 3 / 5; grid-row: 2 / 3; display: flex; align-items: end; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box; min-width: 0; overflow-wrap: anywhere; hyphens: auto; font-size: clamp(18px, 1.9vw, 28px); line-height: 1.28; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Как подготовить запуск новой линии?</div>
+      <div data-s2-tile="" style="grid-column: 1 / 4; grid-row: 3 / 4; display: flex; align-items: end; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box; min-width: 0; overflow-wrap: anywhere; hyphens: auto; font-size: clamp(18px, 1.9vw, 28px); line-height: 1.28; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Как сократить потери без снижения качества?</div>
+      <div data-s2-tile="" style="grid-column: 4 / 7; grid-row: 3 / 4; display: flex; align-items: end; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box; min-width: 0; overflow-wrap: anywhere; hyphens: auto; font-size: clamp(18px, 1.9vw, 28px); line-height: 1.28; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Как найти сильного руководителя производства?</div>
+    </div>
+
+    <p data-s2-tail="" style="margin: 40px 0 0; font-size: 28px; line-height: 36px; color: #B3B3B3; text-wrap: pretty;">Большинство таких решений приходится принимать самостоятельно.</p>
+
+  </div>
+</section>
+
+<section data-screen-label="03 Почему так происходит" style="background: #000000; padding: 72px 0;">
+  <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box;">
+
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;">
+      <div style="grid-column: span 8; min-width: 0;">
+        <div style="font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #B3B3B3;">Почему так происходит</div>
+        <h2 data-s3-h2="" style="margin: 24px 0 0; max-width: 760px; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; font-weight: 400; letter-spacing: -0.015em; color: #FFFFFF;">Производственникам практически негде<br>обсуждать реальные<br>производственные задачи.</h2>
+      </div>
+    </div>
+
+    <div data-s3-row="" style="margin-top: 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+      <div data-s3-dim="" style="display: flex; align-items: end; min-height: 140px; background: #1F2125; border-radius: 32px; padding: 32px; box-sizing: border-box; min-width: 0; overflow-wrap: anywhere; font-size: 20px; line-height: 26px; font-weight: 400; color: #B3B3B3; opacity: .55;">Есть MBA</div>
+      <div data-s3-dim="" style="display: flex; align-items: end; min-height: 140px; background: #1F2125; border-radius: 32px; padding: 32px; box-sizing: border-box; min-width: 0; overflow-wrap: anywhere; font-size: 20px; line-height: 26px; font-weight: 400; color: #B3B3B3; opacity: .55;">Есть бизнес-школы</div>
+      <div data-s3-dim="" style="display: flex; align-items: end; min-height: 140px; background: #1F2125; border-radius: 32px; padding: 32px; box-sizing: border-box; min-width: 0; overflow-wrap: anywhere; font-size: 20px; line-height: 26px; font-weight: 400; color: #B3B3B3; opacity: .55;">Есть конференции</div>
+      <div data-s3-dim="" style="display: flex; align-items: end; min-height: 140px; background: #1F2125; border-radius: 32px; padding: 32px; box-sizing: border-box; min-width: 0; overflow-wrap: anywhere; font-size: 20px; line-height: 26px; font-weight: 400; color: #B3B3B3; opacity: .55;">Есть отраслевые выставки</div>
+    </div>
+
+    <div style="margin: 24px 0; display: flex; justify-content: center;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#854DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+    </div>
+
+    <div data-s3-hero-tile="" style="background: #854DFF; border-radius: 32px; padding: 64px; box-sizing: border-box;">
+      <p data-s3-hero-text="" style="margin: 0; max-width: 900px; font-size: clamp(22px, 2.4vw, 32px); line-height: 1.31; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Но почти нет места, где можно регулярно обсуждать реальные производственные решения с людьми, которые уже проходили этот путь.</p>
+    </div>
+
+    <p data-s3-tail="" style="margin: 40px 0 0; max-width: 860px; font-size: clamp(20px, 2.1vw, 28px); line-height: 1.28; color: #B3B3B3; text-wrap: pretty;">Поэтому большинство руководителей продолжают учиться через собственные ошибки.</p>
+
+  </div>
+</section>
+
+<section data-screen-label="05b Факты" style="background: #000000; padding: 72px 0;">
+  <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box;">
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;">
+      <div style="grid-column: span 8; min-width: 0;">
+        <div style="font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #B3B3B3;">Основатель Академии</div>
+        <h2 data-s5b-h2="" style="margin: 24px 0 0; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; font-weight: 400; letter-spacing: -0.015em; color: #FFFFFF;">Юлия Васильцова — практик,<br>который ежедневно управляет производством.</h2>
+      </div>
+    </div>
+    <div data-s5b-grid="" style="margin-top: 48px; display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(3, minmax(200px, auto)); gap: 24px;">
+
+      <div data-s5b-tile="" style="grid-column: 1 / 3; grid-row: 1 / 2; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <div data-s5b-num="" style="font-size: clamp(36px, 4vw, 56px); line-height: 1.07; font-weight: 400; letter-spacing: -0.02em; color: #FFFFFF;">16+</div>
+        <div data-s5b-cap="" style="font-size: 17px; line-height: 24px; color: #B3B3B3; text-wrap: pretty;">лет в промышленности</div>
+      </div>
+
+      <div data-s5b-tile="" style="grid-column: 3 / 5; grid-row: 1 / 2; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <div data-s5b-num="" style="font-size: clamp(36px, 4vw, 56px); line-height: 1.07; font-weight: 400; letter-spacing: -0.02em; color: #FFFFFF;">2</div>
+        <div data-s5b-cap="" style="font-size: 17px; line-height: 24px; color: #B3B3B3; text-wrap: pretty;">производственных предприятия</div>
+      </div>
+
+      <div data-s5b-tile="" style="grid-column: 5 / 7; grid-row: 1 / 2; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <div data-s5b-num="" style="font-size: clamp(36px, 4vw, 56px); line-height: 1.07; font-weight: 400; letter-spacing: -0.02em; color: #FFFFFF;">№1</div>
+        <div data-s5b-cap="" style="font-size: 17px; line-height: 24px; color: #B3B3B3; text-wrap: pretty;">в отрасли по ЮФО</div>
+      </div>
+
+      <div data-s5b-tile="" data-s5b-accent="" style="grid-column: 1 / 5; grid-row: 2 / 3; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #854DFF; border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <div data-s5b-num="" style="font-size: clamp(36px, 4vw, 56px); line-height: 1.07; font-weight: 400; letter-spacing: -0.02em; color: #FFFFFF; overflow-wrap: anywhere;">220 млн ₽</div>
+        <div data-s5b-cap="" style="font-size: 17px; line-height: 24px; color: rgba(255,255,255,.8); text-wrap: pretty;">инвестиций в развитие производства</div>
+      </div>
+
+      <div data-s5b-tile="" style="grid-column: 5 / 7; grid-row: 2 / 3; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#B3B3B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+        <div data-s5b-cap="" style="font-size: 17px; line-height: 24px; color: #B3B3B3; text-wrap: pretty;">отраслевые награды</div>
+      </div>
+
+      <div data-s5b-tile="" data-s5b-full="" style="grid-column: 1 / 7; grid-row: 3 / 4; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#B3B3B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        <div data-s5b-cap="" style="font-size: 17px; line-height: 24px; color: #B3B3B3; text-wrap: pretty;">международный опыт изучения производственных систем</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="06 Почему нам доверяют" style="background: #000000; padding: 72px 0;">
+  <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box;">
+
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;">
+      <div style="grid-column: span 8; min-width: 0;">
+        <div style="font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #B3B3B3;">Почему нам доверяют</div>
+        <h2 data-s6-h2="" style="margin: 24px 0 0; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; font-weight: 400; letter-spacing: -0.015em; color: #FFFFFF;">Академия объединяет людей, которые<br>продолжают работать в промышленности.</h2>
+      </div>
+    </div>
+
+    <div data-s6-metrics="" style="margin-top: 48px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; align-items: start;">
+
+      <div data-s6-col="" style="min-width: 0; display: flex; gap: 20px;">
+        <div data-s6-line="" style="position: relative; flex: none; width: 8px; height: 231px;">
+          <div data-s6-stem="" style="position: absolute; left: 3.5px; top: 0; bottom: 4px; width: 1px; background: rgba(255,255,255,.2);"></div>
+          <div data-s6-dot="" style="position: absolute; left: 0; bottom: 0; width: 8px; height: 8px; border-radius: 999px; background: #854DFF;"></div>
+        </div>
+        <div style="min-width: 0;">
+          <div data-s6-num="" style="font-size: 48px; line-height: 54px; font-weight: 400; letter-spacing: -0.02em; color: #FFFFFF;">16+</div>
+          <div data-s6-cap="" style="margin-top: 12px; font-size: 15px; line-height: 22px; color: #B3B3B3; text-wrap: pretty;">лет опыта управления производственным бизнесом</div>
+        </div>
+      </div>
+
+      <div data-s6-col="" style="min-width: 0; display: flex; gap: 20px;">
+        <div data-s6-line="" style="position: relative; flex: none; width: 8px; height: 165px;">
+          <div data-s6-stem="" style="position: absolute; left: 3.5px; top: 0; bottom: 4px; width: 1px; background: rgba(255,255,255,.2);"></div>
+          <div data-s6-dot="" style="position: absolute; left: 0; bottom: 0; width: 8px; height: 8px; border-radius: 999px; background: #854DFF;"></div>
+        </div>
+        <div style="min-width: 0;">
+          <div data-s6-num="" style="font-size: 48px; line-height: 54px; font-weight: 400; letter-spacing: -0.02em; color: #FFFFFF;">100+</div>
+          <div data-s6-cap="" style="margin-top: 12px; font-size: 15px; line-height: 22px; color: #B3B3B3; text-wrap: pretty;">лет совокупного производственного опыта экспертного совета</div>
+        </div>
+      </div>
+
+      <div data-s6-col="" style="min-width: 0; display: flex; gap: 20px;">
+        <div data-s6-line="" style="position: relative; flex: none; width: 8px; height: 209px;">
+          <div data-s6-stem="" style="position: absolute; left: 3.5px; top: 0; bottom: 4px; width: 1px; background: rgba(255,255,255,.2);"></div>
+          <div data-s6-dot="" style="position: absolute; left: 0; bottom: 0; width: 8px; height: 8px; border-radius: 999px; background: #854DFF;"></div>
+        </div>
+        <div style="min-width: 0;">
+          <div data-s6-num="" style="font-size: 48px; line-height: 54px; font-weight: 400; letter-spacing: -0.02em; color: #FFFFFF;">20+</div>
+          <div data-s6-cap="" style="margin-top: 12px; font-size: 15px; line-height: 22px; color: #B3B3B3; text-wrap: pretty;">производственных площадок, которые запускали и развивали эксперты</div>
+        </div>
+      </div>
+
+      <div data-s6-col="" style="min-width: 0; display: flex; gap: 20px;">
+        <div data-s6-line="" style="position: relative; flex: none; width: 8px; height: 132px;">
+          <div data-s6-stem="" style="position: absolute; left: 3.5px; top: 0; bottom: 4px; width: 1px; background: rgba(255,255,255,.2);"></div>
+          <div data-s6-dot="" style="position: absolute; left: 0; bottom: 0; width: 8px; height: 8px; border-radius: 999px; background: #854DFF;"></div>
+        </div>
+        <div style="min-width: 0;">
+          <div data-s6-num="" style="font-size: clamp(30px, 3.4vw, 48px); line-height: 1.13; font-weight: 400; letter-spacing: -0.02em; color: #FFFFFF;">Сотни млн ₽</div>
+          <div data-s6-cap="" style="margin-top: 12px; font-size: 15px; line-height: 22px; color: #B3B3B3; text-wrap: pretty;">инвестиций в строительство и модернизацию производств</div>
+        </div>
+      </div>
+
+      <div data-s6-col="" style="min-width: 0; display: flex; gap: 20px;">
+        <div data-s6-line="" style="position: relative; flex: none; width: 8px; height: 187px;">
+          <div data-s6-stem="" style="position: absolute; left: 3.5px; top: 0; bottom: 4px; width: 1px; background: rgba(255,255,255,.2);"></div>
+          <div data-s6-dot="" style="position: absolute; left: 0; bottom: 0; width: 8px; height: 8px; border-radius: 999px; background: #854DFF;"></div>
+        </div>
+        <div style="min-width: 0;">
+          <div data-s6-num="" style="font-size: clamp(32px, 3.4vw, 48px); line-height: 1.13; font-weight: 400; letter-spacing: -0.02em; color: #FFFFFF;">Тысячи</div>
+          <div data-s6-cap="" style="margin-top: 12px; font-size: 15px; line-height: 22px; color: #B3B3B3; text-wrap: pretty;">сотрудников в производственных командах под управлением экспертов</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 56px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;">
+      <div style="grid-column: span 7; min-width: 0;">
+        <div style="font-size: 20px; line-height: 28px; font-weight: 500; color: #FFFFFF;">Наши эксперты:</div>
+        <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 16px;">
+          <div style="display: flex; align-items: start; gap: 16px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#854DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 4px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span data-s6-item="" style="font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82);">запускали новые производства</span>
+          </div>
+          <div style="display: flex; align-items: start; gap: 16px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#854DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 4px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span data-s6-item="" style="font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82);">строили производственные системы</span>
+          </div>
+          <div style="display: flex; align-items: start; gap: 16px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#854DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 4px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span data-s6-item="" style="font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82);">внедряли Lean и автоматизацию</span>
+          </div>
+          <div style="display: flex; align-items: start; gap: 16px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#854DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 4px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span data-s6-item="" style="font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82);">выводили предприятия из кризисов</span>
+          </div>
+          <div style="display: flex; align-items: start; gap: 16px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#854DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 4px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span data-s6-item="" style="font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82);">отвечали за финансовый результат</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="council" data-screen-label="07 Экспертный совет" style="width: 100%; background: #1F2125; padding: 72px 0;">
+  <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box;">
+
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;">
+      <div style="grid-column: span 8; min-width: 0;">
+        <div style="font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #B3B3B3;">Экспертный совет</div>
+        <h2 data-s7-h2="" style="margin: 24px 0 0; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; font-weight: 400; letter-spacing: -0.015em; color: #FFFFFF;">Экспертный совет Академии<br>промышленных лидеров</h2>
+      </div>
+    </div>
+
+    <div data-s7-grid="" style="margin-top: 48px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; align-items: start;">
+      <div data-s7-card="" style="min-width: 0; display: flex; flex-direction: column;">
+        <div data-s7-photo="" style="position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 32px; background: #000000;">
+          <img src="uploads/expert-vasiltsova.jpg" alt="Юлия Васильцова" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 18%; transform: scale(1.45); transform-origin: 58% 22%; filter: grayscale(100%) contrast(1.05) brightness(.92);">
+          <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.45) 100%);"></div>
+        </div>
+        <div data-s7-name="" style="margin-top: 24px; font-size: 20px; line-height: 26px; font-weight: 500; color: #FFFFFF;">Юлия Васильцова</div>
+        <div data-s7-role="" style="margin-top: 8px; font-size: 15px; line-height: 22px; color: #B3B3B3; text-wrap: pretty;">Владелец и генеральный директор холдинга «Спектр Пак»</div>
+      </div>
+      <div data-s7-card="" style="min-width: 0; display: flex; flex-direction: column;">
+        <div data-s7-photo="" style="position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 32px; background: #000000;">
+          <img src="uploads/expert-abakunov.jpg" alt="Вячеслав Абакунов" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 30%; transform: scale(1.4); transform-origin: 56% 40%; filter: grayscale(100%) contrast(1.05) brightness(.92);">
+          <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.45) 100%);"></div>
+        </div>
+        <div data-s7-name="" style="margin-top: 24px; font-size: 20px; line-height: 26px; font-weight: 500; color: #FFFFFF;">Вячеслав Абакунов</div>
+        <div data-s7-role="" style="margin-top: 8px; font-size: 15px; line-height: 22px; color: #B3B3B3; text-wrap: pretty;">Генеральный директор завода «ТЕХНОНИКОЛЬ»</div>
+      </div>
+      <div data-s7-card="" style="min-width: 0; display: flex; flex-direction: column;">
+        <div data-s7-photo="" style="position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 32px; background: #000000;">
+          <img src="uploads/expert-chereva.jpg" alt="Евгения Черева" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 30%; filter: grayscale(100%) contrast(1.05) brightness(.92);">
+          <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.45) 100%);"></div>
+        </div>
+        <div data-s7-name="" style="margin-top: 24px; font-size: 20px; line-height: 26px; font-weight: 500; color: #FFFFFF;">Евгения Черева</div>
+        <div data-s7-role="" style="margin-top: 8px; font-size: 15px; line-height: 22px; color: #B3B3B3; text-wrap: pretty;">Собственник производственной компании «Складно». Ex-CEO федеральной компании с оборотом более 1 млрд ₽</div>
+      </div>
+      <div data-s7-card="" style="min-width: 0; display: flex; flex-direction: column;">
+        <div data-s7-photo="" style="position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 32px; background: #000000;">
+          <img src="uploads/expert-neustroeva.jpg" alt="Наталья Неустроева" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 20%; filter: grayscale(100%) contrast(1.05) brightness(.92);">
+          <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.45) 100%);"></div>
+        </div>
+        <div data-s7-name="" style="margin-top: 24px; font-size: 20px; line-height: 26px; font-weight: 500; color: #FFFFFF;">Наталья Неустроева</div>
+        <div data-s7-role="" style="margin-top: 8px; font-size: 15px; line-height: 22px; color: #B3B3B3; text-wrap: pretty;">Генеральный директор крупной производственной компании</div>
+      </div>
+      <div data-s7-card="" style="min-width: 0; display: flex; flex-direction: column;">
+        <div data-s7-photo="" style="position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 32px; background: #000000;">
+          <img src="uploads/expert-maltsev.jpg" alt="Игорь Мальцев" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 20%; filter: grayscale(100%) contrast(1.05) brightness(.92);">
+          <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.45) 100%);"></div>
+        </div>
+        <div data-s7-name="" style="margin-top: 24px; font-size: 20px; line-height: 26px; font-weight: 500; color: #FFFFFF;">Игорь Мальцев</div>
+        <div data-s7-role="" style="margin-top: 8px; font-size: 15px; line-height: 22px; color: #B3B3B3; text-wrap: pretty;">Эксперт по построению отделов продаж с использованием ИИ</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section data-screen-label="08 Что получает участник" style="background: #000000; padding: 64px 0;">
+  <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box;">
+
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;">
+      <div style="grid-column: span 8; min-width: 0;">
+        <div style="font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #B3B3B3;">Что получает участник</div>
+        <div data-s8-h2="" style="margin: 24px 0 0; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; font-weight: 400; letter-spacing: -0.015em; color: #B3B3B3;">За четыре месяца участник работает<br>не над учебным проектом.</div>
+        <div data-s8-h2="" style="margin: 12px 0 0; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; font-weight: 400; letter-spacing: -0.015em; color: #FFFFFF;">А над собственным предприятием.</div>
+      </div>
+    </div>
+
+    <div data-s8-grid="" style="margin-top: 48px; display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(2, minmax(200px, auto)); gap: 24px;">
+
+      <div data-s8-tile="" style="grid-column: 1 / 4; grid-row: 1 / 2; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #854DFF; border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <div data-s8-text="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Производственная стратегия</div>
+      </div>
+
+      <div data-s8-tile="" style="grid-column: 4 / 7; grid-row: 1 / 2; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #854DFF; border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <div data-s8-text="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">План развития предприятия</div>
+      </div>
+
+      <div data-s8-tile="" style="grid-column: 1 / 3; grid-row: 2 / 3; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#854DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <div data-s8-text="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Финансовая модель</div>
+      </div>
+
+      <div data-s8-tile="" style="grid-column: 3 / 5; grid-row: 2 / 3; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#854DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <div data-s8-text="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Производственная система</div>
+      </div>
+
+      <div data-s8-tile="" style="grid-column: 5 / 7; grid-row: 2 / 3; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#854DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <div data-s8-text="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Поддержка экспертного совета и сообщество руководителей</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section data-screen-label="09 Как проходит программа" data-s9="" style="background: #000000; padding: 72px 0;">
+  <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box;">
+
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;">
+      <div style="grid-column: span 8; min-width: 0;">
+        <div style="font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #B3B3B3;">Формат</div>
+        <h2 data-s9-h2="" style="margin: 24px 0 0; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; font-weight: 400; letter-spacing: -0.015em; color: #FFFFFF;">Как проходит программа</h2>
+        <p data-s9-lead="" style="margin: 24px 0 0; max-width: 620px; font-size: 20px; line-height: 30px; color: #B3B3B3; text-wrap: pretty;">Четыре месяца офлайн-модулей, онлайн-встреч и производственных визитов. Каждый месяц — следующий этап стратегии вашего предприятия.</p>
+      </div>
+    </div>
+
+    <div data-s9-bento="" style="margin-top: 48px; display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(2, minmax(160px, auto)); gap: 24px;">
+      <div data-s9-photo="" style="grid-column: 1 / 6; grid-row: 1 / 3; position: relative; min-width: 0; min-height: 344px; border-radius: 32px; overflow: hidden; background: #1F2125;">
+        <img src="uploads/production-rolls.jpg" alt="Производство стрейч-плёнки" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 60%; filter: grayscale(100%) contrast(1.05) brightness(.7);">
+        <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(12,12,12,.05) 0%, rgba(12,12,12,.35) 50%, rgba(133,77,255,.55) 100%);"></div>
+        <div style="position: absolute; left: 32px; right: 32px; bottom: 28px;">
+          <div style="font-size: 24px; line-height: 30px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Производственные визиты</div>
+          <div style="margin-top: 6px; font-size: 15px; line-height: 22px; color: rgba(255,255,255,.85);">в течение всей программы · предприятия уточняются</div>
+        </div>
+      </div>
+      <div data-s9-kpi="" style="grid-column: 6 / 9; grid-row: 1 / 2; min-width: 0; min-height: 160px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 28px 32px; box-sizing: border-box;">
+        <div data-s9-kpi-num="" style="font-size: clamp(48px, 5vw, 80px); line-height: 1; font-weight: 400; letter-spacing: -0.03em; color: #FFFFFF;">4</div>
+        <div style="font-size: 15px; line-height: 22px; color: #B3B3B3; text-wrap: pretty;">месяца программы</div>
+      </div>
+      <div data-s9-kpi="" style="grid-column: 9 / 13; grid-row: 1 / 2; min-width: 0; min-height: 160px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 28px 32px; box-sizing: border-box;">
+        <div data-s9-kpi-num="" style="font-size: clamp(48px, 5vw, 80px); line-height: 1; font-weight: 400; letter-spacing: -0.03em; color: #FFFFFF;">4</div>
+        <div style="font-size: 15px; line-height: 22px; color: #B3B3B3; text-wrap: pretty;">офлайн-модуля</div>
+      </div>
+      <div data-s9-kpi="" style="grid-column: 6 / 9; grid-row: 2 / 3; min-width: 0; min-height: 160px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 28px 32px; box-sizing: border-box;">
+        <div data-s9-kpi-num="" style="font-size: clamp(48px, 5vw, 80px); line-height: 1; font-weight: 400; letter-spacing: -0.03em; color: #FFFFFF;">12</div>
+        <div style="font-size: 15px; line-height: 22px; color: #B3B3B3; text-wrap: pretty;">онлайн-встреч</div>
+      </div>
+      <div data-s9-kpi="" style="grid-column: 9 / 13; grid-row: 2 / 3; min-width: 0; min-height: 160px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; background: #854DFF; border-radius: 32px; padding: 28px 32px; box-sizing: border-box;">
+        <div data-s9-kpi-num="" style="font-size: clamp(48px, 5vw, 80px); line-height: 1; font-weight: 400; letter-spacing: -0.03em; color: #FFFFFF;">6</div>
+        <div style="font-size: 15px; line-height: 22px; color: rgba(255,255,255,.85); text-wrap: pretty;">тематических блоков</div>
+      </div>
+    </div>
+
+    <div data-s9-timeline="" style="margin-top: 24px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 40px; box-sizing: border-box;">
+      <div data-s9-grid="" style="display: grid; grid-template-columns: 180px 1fr; column-gap: 24px;">
+
+        <div data-s9-labels="" style="display: flex; flex-direction: column; gap: 16px;">
+          <div style="height: 56px;"></div>
+          <div style="height: 240px; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 8px; box-sizing: border-box;">
+            <div style="font-size: 15px; line-height: 20px; font-weight: 500; color: #B3B3B3;">Работа над стратегией</div>
+            <div style="margin-top: 6px; font-size: 13px; line-height: 18px; color: rgba(179,179,179,.7);">этапы I–IV</div>
+          </div>
+          <div style="height: 104px; display: flex; align-items: center; font-size: 15px; line-height: 20px; font-weight: 500; color: #B3B3B3;">Офлайн-модули</div>
+          <div style="height: 64px; display: flex; align-items: center; font-size: 15px; line-height: 20px; font-weight: 500; color: #B3B3B3;">Онлайн-встречи</div>
+        </div>
+
+        <div data-s9-cols="" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <div data-s9-col="" style="min-width: 0; display: flex; flex-direction: column; gap: 16px; transition: opacity 240ms ease;">
+          <div style="height: 56px; display: flex; align-items: center; justify-content: center; background: #000000; border: 1px solid rgba(255,255,255,.08); border-radius: 20px; font-size: 17px; line-height: 24px; font-weight: 500; color: #FFFFFF;">Месяц 1</div>
+          <div data-s9-chart="" style="position: relative; height: 240px; display: flex; align-items: flex-end;">
+            <div data-s9-fill="" style="--d: 0ms; position: relative; width: 100%; height: 25%; border-radius: 20px; background: linear-gradient(180deg, #B999FF 0%, #854DFF 38%, rgba(133,77,255,.12) 100%); transform-origin: bottom;">
+              <div style="position: absolute; left: 16px; top: 12px; font-size: 20px; line-height: 26px; font-weight: 500; color: #FFFFFF;">I</div>
+            </div>
+          </div>
+          <div data-s9-module="" style="height: 104px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; background: #000000; border: 1px solid rgba(255,255,255,.08); border-radius: 20px; padding: 16px 20px;">
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 17px; line-height: 24px; font-weight: 500; color: #FFFFFF;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#854DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>Модуль 1</div>
+            <div style="font-size: 14px; line-height: 20px; color: #B3B3B3;">офлайн · даты уточняются</div>
+          </div>
+          <div data-s9-online="" style="height: 64px; display: flex; align-items: center; gap: 8px;">
+            <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: #854DFF; border-radius: 12px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+            <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(133,77,255,.55); border-radius: 12px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+            <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(133,77,255,.3); border-radius: 12px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+            <div data-s9-online-cap="" style="margin-left: 4px; font-size: 14px; line-height: 20px; color: #B3B3B3; white-space: nowrap;">3 встречи</div>
+          </div>
+        </div>
+        <div data-s9-col="" style="min-width: 0; display: flex; flex-direction: column; gap: 16px; transition: opacity 240ms ease;">
+          <div style="height: 56px; display: flex; align-items: center; justify-content: center; background: #000000; border: 1px solid rgba(255,255,255,.08); border-radius: 20px; font-size: 17px; line-height: 24px; font-weight: 500; color: #FFFFFF;">Месяц 2</div>
+          <div data-s9-chart="" style="position: relative; height: 240px; display: flex; align-items: flex-end;">
+            <div data-s9-fill="" style="--d: 140ms; position: relative; width: 100%; height: 50%; border-radius: 20px; background: linear-gradient(180deg, #B999FF 0%, #854DFF 38%, rgba(133,77,255,.12) 100%); transform-origin: bottom;">
+              <div style="position: absolute; left: 16px; top: 12px; font-size: 20px; line-height: 26px; font-weight: 500; color: #FFFFFF;">II</div>
+            </div>
+          </div>
+          <div data-s9-module="" style="height: 104px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; background: #000000; border: 1px solid rgba(255,255,255,.08); border-radius: 20px; padding: 16px 20px;">
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 17px; line-height: 24px; font-weight: 500; color: #FFFFFF;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#854DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>Модуль 2</div>
+            <div style="font-size: 14px; line-height: 20px; color: #B3B3B3;">офлайн · даты уточняются</div>
+          </div>
+          <div data-s9-online="" style="height: 64px; display: flex; align-items: center; gap: 8px;">
+            <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: #854DFF; border-radius: 12px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+            <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(133,77,255,.55); border-radius: 12px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+            <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(133,77,255,.3); border-radius: 12px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+            <div data-s9-online-cap="" style="margin-left: 4px; font-size: 14px; line-height: 20px; color: #B3B3B3; white-space: nowrap;">3 встречи</div>
+          </div>
+        </div>
+        <div data-s9-col="" style="min-width: 0; display: flex; flex-direction: column; gap: 16px; transition: opacity 240ms ease;">
+          <div style="height: 56px; display: flex; align-items: center; justify-content: center; background: #000000; border: 1px solid rgba(255,255,255,.08); border-radius: 20px; font-size: 17px; line-height: 24px; font-weight: 500; color: #FFFFFF;">Месяц 3</div>
+          <div data-s9-chart="" style="position: relative; height: 240px; display: flex; align-items: flex-end;">
+            <div data-s9-fill="" style="--d: 280ms; position: relative; width: 100%; height: 75%; border-radius: 20px; background: linear-gradient(180deg, #B999FF 0%, #854DFF 38%, rgba(133,77,255,.12) 100%); transform-origin: bottom;">
+              <div style="position: absolute; left: 16px; top: 12px; font-size: 20px; line-height: 26px; font-weight: 500; color: #FFFFFF;">III</div>
+            </div>
+          </div>
+          <div data-s9-module="" style="height: 104px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; background: #000000; border: 1px solid rgba(255,255,255,.08); border-radius: 20px; padding: 16px 20px;">
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 17px; line-height: 24px; font-weight: 500; color: #FFFFFF;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#854DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>Модуль 3</div>
+            <div style="font-size: 14px; line-height: 20px; color: #B3B3B3;">офлайн · даты уточняются</div>
+          </div>
+          <div data-s9-online="" style="height: 64px; display: flex; align-items: center; gap: 8px;">
+            <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: #854DFF; border-radius: 12px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+            <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(133,77,255,.55); border-radius: 12px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+            <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(133,77,255,.3); border-radius: 12px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+            <div data-s9-online-cap="" style="margin-left: 4px; font-size: 14px; line-height: 20px; color: #B3B3B3; white-space: nowrap;">3 встречи</div>
+          </div>
+        </div>
+        <div data-s9-col="" style="min-width: 0; display: flex; flex-direction: column; gap: 16px; transition: opacity 240ms ease;">
+          <div style="height: 56px; display: flex; align-items: center; justify-content: center; background: #000000; border: 1px solid rgba(255,255,255,.08); border-radius: 20px; font-size: 17px; line-height: 24px; font-weight: 500; color: #FFFFFF;">Месяц 4</div>
+          <div data-s9-chart="" style="position: relative; height: 240px; display: flex; align-items: flex-end;">
+            <div data-s9-fill="" style="--d: 420ms; position: relative; width: 100%; height: 100%; border-radius: 20px; background: linear-gradient(180deg, #B999FF 0%, #854DFF 38%, rgba(133,77,255,.12) 100%); transform-origin: bottom;">
+              <div style="position: absolute; left: 16px; top: 12px; font-size: 20px; line-height: 26px; font-weight: 500; color: #FFFFFF;">IV</div>
+            </div>
+          </div>
+          <div data-s9-module="" style="height: 104px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; background: #000000; border: 1px solid rgba(255,255,255,.08); border-radius: 20px; padding: 16px 20px;">
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 17px; line-height: 24px; font-weight: 500; color: #FFFFFF;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#854DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>Модуль 4</div>
+            <div style="font-size: 14px; line-height: 20px; color: #B3B3B3;">офлайн · даты уточняются</div>
+          </div>
+          <div data-s9-online="" style="height: 64px; display: flex; align-items: center; gap: 8px;">
+            <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: #854DFF; border-radius: 12px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+            <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(133,77,255,.55); border-radius: 12px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+            <div style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(133,77,255,.3); border-radius: 12px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
+            <div data-s9-online-cap="" style="margin-left: 4px; font-size: 14px; line-height: 20px; color: #B3B3B3; white-space: nowrap;">3 встречи</div>
+          </div>
+        </div>
+        </div>
+
+      </div>
+
+      <div data-s9-result="" style="margin-top: 24px; margin-left: 204px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-radius: 20px; padding: 20px 28px; background: linear-gradient(90deg, #0C0C0C 0%, #854DFF 70%, #B999FF 100%);">
+        <div style="font-size: 13px; line-height: 18px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.7);">Результат</div>
+        <div style="font-size: 17px; line-height: 24px; font-weight: 500; color: #FFFFFF; text-align: right;">Производственная стратегия и план развития вашего предприятия</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="program" data-screen-label="10 Программа" style="width: 100%; background: #1F2125; padding: 72px 0;">
+  <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box;">
+
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;">
+      <div style="grid-column: span 8; min-width: 0;">
+        <div style="font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #B3B3B3;">Программа курса</div>
+        <h2 data-s10-h2="" style="margin: 24px 0 0; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; font-weight: 400; letter-spacing: -0.015em; color: #FFFFFF;">6 тематических блоков</h2>
+      </div>
+    </div>
+
+    <div data-s10-grid="" style="margin-top: 48px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+      <div data-s10-card="" style="min-width: 0; display: flex; flex-direction: column; background: #000000; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 40px; box-sizing: border-box;">
+        <div style="display: flex; align-items: baseline; gap: 20px;">
+          <div data-s10-num="" style="flex: none; font-size: 40px; line-height: 44px; font-weight: 400; letter-spacing: -0.02em; color: #854DFF;">01</div>
+          <div data-s10-name="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Стратегия и развитие бизнеса</div>
+        </div>
+        <ul style="margin: 28px 0 0; padding: 0; list-style: none;">
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Миссия, ценности и позиционирование бренда</span></li>
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Коммуникационная стратегия с рынком</span></li>
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Четыре опоры бизнеса: стратегия и лидер, производство, маркетинг, люди</span></li>
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Мышление собственника и модель управления компанией</span></li>
+        </ul>
+      </div>
+      <div data-s10-card="" style="min-width: 0; display: flex; flex-direction: column; background: #000000; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 40px; box-sizing: border-box;">
+        <div style="display: flex; align-items: baseline; gap: 20px;">
+          <div data-s10-num="" style="flex: none; font-size: 40px; line-height: 44px; font-weight: 400; letter-spacing: -0.02em; color: #854DFF;">02</div>
+          <div data-s10-name="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Команда и система управления</div>
+        </div>
+        <ul style="margin: 28px 0 0; padding: 0; list-style: none;">
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Организационная структура предприятия</span></li>
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Роли, полномочия и зоны ответственности</span></li>
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Корпоративная культура</span></li>
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Система мотивации и KPI</span></li>
+        </ul>
+      </div>
+      <div data-s10-card="" style="min-width: 0; display: flex; flex-direction: column; background: #000000; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 40px; box-sizing: border-box;">
+        <div style="display: flex; align-items: baseline; gap: 20px;">
+          <div data-s10-num="" style="flex: none; font-size: 40px; line-height: 44px; font-weight: 400; letter-spacing: -0.02em; color: #854DFF;">03</div>
+          <div data-s10-name="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Производственные потоки и процессы</div>
+        </div>
+        <ul style="margin: 28px 0 0; padding: 0; list-style: none;">
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Технология производства и сырьевая база</span></li>
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Карта потока создания ценности (VSM)</span></li>
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Проектирование и балансировка производственных линий</span></li>
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Стандартизация операций</span></li>
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Управление узкими местами, простоями, браком и потерями</span></li>
+        </ul>
+      </div>
+      <div data-s10-card="" style="min-width: 0; display: flex; flex-direction: column; background: #000000; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 40px; box-sizing: border-box;">
+        <div style="display: flex; align-items: baseline; gap: 20px;">
+          <div data-s10-num="" style="flex: none; font-size: 40px; line-height: 44px; font-weight: 400; letter-spacing: -0.02em; color: #854DFF;">04</div>
+          <div data-s10-name="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Экономика и управление эффективностью</div>
+        </div>
+        <ul style="margin: 28px 0 0; padding: 0; list-style: none;">
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Себестоимость единицы продукции</span></li>
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Оборачиваемость запасов</span></li>
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Производительность и длительность производственного цикла (Lead time / Throughput)</span></li>
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Планирование продаж и производства</span></li>
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>План-фактный анализ и P&amp;L</span></li>
+        </ul>
+      </div>
+      <div data-s10-card="" style="min-width: 0; display: flex; flex-direction: column; background: #000000; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 40px; box-sizing: border-box;">
+        <div style="display: flex; align-items: baseline; gap: 20px;">
+          <div data-s10-num="" style="flex: none; font-size: 40px; line-height: 44px; font-weight: 400; letter-spacing: -0.02em; color: #854DFF;">05</div>
+          <div data-s10-name="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Экологическая ответственность</div>
+        </div>
+        <ul style="margin: 28px 0 0; padding: 0; list-style: none;">
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Экологический сбор и обязательства производственных предприятий</span></li>
+        </ul>
+      </div>
+      <div data-s10-card="" style="min-width: 0; display: flex; flex-direction: column; background: #000000; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 40px; box-sizing: border-box;">
+        <div style="display: flex; align-items: baseline; gap: 20px;">
+          <div data-s10-num="" style="flex: none; font-size: 40px; line-height: 44px; font-weight: 400; letter-spacing: -0.02em; color: #854DFF;">06</div>
+          <div data-s10-name="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Юридическая и налоговая защита бизнеса</div>
+        </div>
+        <ul style="margin: 28px 0 0; padding: 0; list-style: none;">
+            <li data-s10-item="" style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;"><span aria-hidden="true" style="flex: none; width: 6px; height: 6px; margin-top: 10px; border-radius: 999px; background: #854DFF;"></span><span>Правовые и налоговые аспекты защиты производственной компании</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="visits" data-screen-label="11 Производственные визиты" style="width: 100%; background: #000000; padding: 0;">
+
+  <div data-s11-hero="" style="position: relative; width: 100%; height: 560px; background: #1F2125; overflow: hidden;">
+    <img src="uploads/production-spektr.jpg" alt="Производственная линия «Спектр Пак»" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 40%; filter: grayscale(100%) contrast(1.05) brightness(.75);">
+    <div style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.1) 60%, rgba(133,77,255,.25) 100%);"></div>
+    <div data-s11-plate="" style="position: absolute; left: 64px; bottom: 64px; width: 620px; max-width: calc(100% - 128px); box-sizing: border-box; background: rgba(0,0,0,.75); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 32px; padding: 40px;">
+      <div style="font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #B3B3B3;">Производственные визиты</div>
+      <div data-s11-line="" style="margin-top: 20px; font-size: 28px; line-height: 36px; font-weight: 400; color: #B3B3B3;">Не экскурсия.</div>
+      <div data-s11-line="" style="margin-top: 8px; font-size: 28px; line-height: 36px; font-weight: 400; color: #FFFFFF; text-wrap: pretty;">Разбор производственной системы предприятия вместе с руководителями.</div>
+    </div>
+  </div>
+
+  <div data-s11-row="" style="margin-top: 16px; width: 100%; box-sizing: border-box; padding: 0 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+    <div data-s11-thumb="" style="position: relative; height: 280px; background: #1F2125; border-radius: 32px; overflow: hidden;">
+      <img src="uploads/visit-stairs.jpg" alt="Визит на производство" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: 40% 46%; filter: grayscale(100%) contrast(1.05) brightness(.8);">
+    </div>
+    <div data-s11-thumb="" style="position: relative; height: 280px; background: #1F2125; border-radius: 32px; overflow: hidden;">
+      <img src="uploads/production-line.jpg" alt="Работа на производственной линии" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 40%; filter: grayscale(100%) contrast(1.05) brightness(.8);">
+    </div>
+    <div data-s11-thumb="" style="position: relative; height: 280px; background: #1F2125; border-radius: 32px; overflow: hidden;">
+      <img src="uploads/production-food.jpg" alt="Цех пищевого производства" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 50%; filter: grayscale(100%) contrast(1.05) brightness(.8);">
+    </div>
+  </div>
+
+  <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 32px 80px 72px; box-sizing: border-box;">
+    <p style="margin: 0; font-size: 17px; line-height: 24px; color: rgba(179,179,179,.7);">Перечень предприятий для визитов формируется под состав группы.</p>
+  </div>
+
+</section>
+
+<section data-screen-label="12 После Академии" data-s12="" style="background: #000000; padding: 72px 0;">
+  <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box;">
+    <div style="max-width: 900px;">
+      <div data-s12-line="" style="font-size: clamp(32px, 4.4vw, 60px); line-height: 1.17; font-weight: 400; letter-spacing: -0.02em; color: #B3B3B3;">Программа заканчивается.</div>
+      <div data-s12-line="" data-s12-second="" style="margin-top: 12px; font-size: clamp(32px, 4.4vw, 60px); line-height: 1.17; font-weight: 400; letter-spacing: -0.02em; color: #FFFFFF;">Сообщество — нет.</div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="13 Форматы сообщества" style="background: #000000; padding: 0 0 72px;">
+  <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box;">
+    <div data-s13-grid="" style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(3, minmax(220px, auto)); gap: 24px;">
+
+      <div data-s13-tile="" style="grid-column: 1 / 4; grid-row: 1 / 2; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #854DFF; border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <div>
+          <div data-s13-name="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Закрытые встречи</div>
+          <div data-s13-desc="" style="margin-top: 12px; font-size: 15px; line-height: 22px; color: rgba(255,255,255,.8); text-wrap: pretty;">Регулярные разборы в узком составе, без записи и без посторонних.</div>
+        </div>
+      </div>
+
+      <div data-s13-tile="" style="grid-column: 4 / 7; grid-row: 1 / 2; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#B3B3B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        <div>
+          <div data-s13-name="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Совместные производственные визиты</div>
+          <div data-s13-desc="" style="margin-top: 12px; font-size: 15px; line-height: 22px; color: rgba(255,255,255,.7); text-wrap: pretty;">Выезды на предприятия участников и партнёров, разбор систем на месте.</div>
+        </div>
+      </div>
+
+      <div data-s13-tile="" style="grid-column: 1 / 3; grid-row: 2 / 3; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#B3B3B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <div>
+          <div data-s13-name="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Экспертные разборы</div>
+          <div data-s13-desc="" style="margin-top: 12px; font-size: 15px; line-height: 22px; color: rgba(255,255,255,.7); text-wrap: pretty;">Ваш вопрос выносится на совет и разбирается людьми, которые проходили это на своём производстве.</div>
+        </div>
+      </div>
+
+      <div data-s13-tile="" style="grid-column: 3 / 5; grid-row: 2 / 3; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#B3B3B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        <div>
+          <div data-s13-name="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Отраслевые мастермайнды</div>
+          <div data-s13-desc="" style="margin-top: 12px; font-size: 15px; line-height: 22px; color: rgba(255,255,255,.7); text-wrap: pretty;">Группы по отраслям: металлообработка, пищевое производство, полимеры, упаковка.</div>
+        </div>
+      </div>
+
+      <div data-s13-tile="" style="grid-column: 5 / 7; grid-row: 2 / 3; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#B3B3B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line></svg>
+        <div>
+          <div data-s13-name="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Поддержка участников</div>
+          <div data-s13-desc="" style="margin-top: 12px; font-size: 15px; line-height: 22px; color: rgba(255,255,255,.7); text-wrap: pretty;">Доступ к экспертам и участникам между встречами, когда решение нужно сегодня, а не через месяц.</div>
+        </div>
+      </div>
+
+      <div data-s13-tile="" style="grid-column: 1 / 7; grid-row: 3 / 4; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; background: #1F2125; border: 1px solid rgba(255,255,255,.08); border-radius: 32px; padding: 32px; box-sizing: border-box;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#B3B3B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+        <div>
+          <div data-s13-name="" style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF; text-wrap: pretty;">Новые партнёрства</div>
+          <div data-s13-desc="" style="margin-top: 12px; font-size: 15px; line-height: 22px; color: rgba(255,255,255,.7); text-wrap: pretty;">Поставки, подряды и совместные проекты внутри сообщества.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="selection" data-screen-label="14 Как попасть" style="background: #000000; padding: 72px 0;">
+  <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box;">
+
+    <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;">
+      <div style="grid-column: span 8; min-width: 0;">
+        <div style="font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #B3B3B3;">Отбор</div>
+        <h2 data-s14-h2="" style="margin: 24px 0 0; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; font-weight: 400; letter-spacing: -0.015em; color: #FFFFFF;">Как попасть в Академию</h2>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px;">
+
+      <div data-s14-step="" style="position: relative; overflow: hidden; height: 160px; display: flex; align-items: center; border-top: 1px solid rgba(255,255,255,.08);">
+        <div data-s14-num="" style="position: absolute; right: -24px; top: 50%; transform: translateY(-50%); font-size: 160px; line-height: 1; font-weight: 400; letter-spacing: -0.04em; color: rgba(255,255,255,.42); z-index: 0; pointer-events: none;">01</div>
+        <div style="position: relative; z-index: 1; width: 66.66%; min-width: 0;">
+          <div data-s14-name="" style="font-size: 32px; line-height: 40px; font-weight: 400; color: #FFFFFF;">Заявка</div>
+          <p data-s14-desc="" style="margin: 12px 0 0; max-width: 620px; font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;">Короткая форма: предприятие, отрасль, обороты, ваш запрос. Занимает пять минут.</p>
+        </div>
+      </div>
+
+      <div data-s14-step="" style="position: relative; overflow: hidden; height: 160px; display: flex; align-items: center; border-top: 1px solid rgba(255,255,255,.08);">
+        <div data-s14-num="" style="position: absolute; right: -24px; top: 50%; transform: translateY(-50%); font-size: 160px; line-height: 1; font-weight: 400; letter-spacing: -0.04em; color: rgba(255,255,255,.42); z-index: 0; pointer-events: none;">02</div>
+        <div style="position: relative; z-index: 1; width: 66.66%; min-width: 0;">
+          <div data-s14-name="" style="font-size: 32px; line-height: 40px; font-weight: 400; color: #FFFFFF;">Интервью</div>
+          <p data-s14-desc="" style="margin: 12px 0 0; max-width: 620px; font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;">Разговор с командой Академии о том, где сейчас находится предприятие и что вы хотите изменить.</p>
+        </div>
+      </div>
+
+      <div data-s14-step="" style="position: relative; overflow: hidden; height: 160px; display: flex; align-items: center; border-top: 1px solid rgba(255,255,255,.08);">
+        <div data-s14-num="" style="position: absolute; right: -24px; top: 50%; transform: translateY(-50%); font-size: 160px; line-height: 1; font-weight: 400; letter-spacing: -0.04em; color: rgba(255,255,255,.42); z-index: 0; pointer-events: none;">03</div>
+        <div style="position: relative; z-index: 1; width: 66.66%; min-width: 0;">
+          <div data-s14-name="" style="font-size: 32px; line-height: 40px; font-weight: 400; color: #FFFFFF;">Диагностика предприятия</div>
+          <p data-s14-desc="" style="margin: 12px 0 0; max-width: 620px; font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;">Смотрим цифры, структуру управления и текущие задачи. Нужно, чтобы группа собралась из людей одного уровня.</p>
+        </div>
+      </div>
+
+      <div data-s14-step="" style="position: relative; overflow: hidden; height: 160px; display: flex; align-items: center; border-top: 1px solid rgba(255,255,255,.08); border-bottom: 1px solid rgba(255,255,255,.08);">
+        <div data-s14-num="" style="position: absolute; right: -24px; top: 50%; transform: translateY(-50%); font-size: 160px; line-height: 1; font-weight: 400; letter-spacing: -0.04em; color: rgba(255,255,255,.42); z-index: 0; pointer-events: none;">04</div>
+        <div style="position: relative; z-index: 1; width: 66.66%; min-width: 0;">
+          <div data-s14-name="" style="font-size: 32px; line-height: 40px; font-weight: 400; color: #FFFFFF;">Подтверждение участия</div>
+          <p data-s14-desc="" style="margin: 12px 0 0; max-width: 620px; font-size: 17px; line-height: 26px; color: rgba(255,255,255,.82); text-wrap: pretty;">Решение по итогам диагностики и договор. Состав группы ограничен, места закрываются по мере набора.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 40px; display: flex;">
+      <a href="#apply" style="display: inline-flex; align-items: center; background: #854DFF; color: #FFFFFF; border-radius: 999px; padding: 18px 36px; font-size: 17px; line-height: 24px; font-weight: 500; transition: opacity 180ms ease;" style-hover="opacity: .85; color: #FFFFFF;">Подать заявку</a>
+    </div>
+
+  </div>
+</section>
+
+<section data-screen-label="15 Финал" data-s15="" style="width: 100%; background: linear-gradient(180deg, #0C0C0C 0%, #854DFF 74%, #B999FF 100%); padding: 112px 0;">
+  <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box;">
+    <div data-s15-grid="" style="display: grid; grid-template-columns: 1fr 1fr; column-gap: 96px; row-gap: 48px; align-items: start;">
+
+      <div style="min-width: 0;">
+        <div style="font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.6);">Академия промышленных лидеров</div>
+        <h2 data-s15-h="" style="margin: 32px 0 0; max-width: 900px; font-size: clamp(32px, 3.6vw, 60px); line-height: 1.17; font-weight: 400; letter-spacing: -0.02em; color: #FFFFFF; text-wrap: pretty;">Самые сильные производственные решения рождаются там, где есть сильная профессиональная среда.</h2>
+        <p data-s15-sub="" style="margin: 32px 0 0; max-width: 620px; font-size: 20px; line-height: 30px; color: rgba(255,255,255,.8); text-wrap: pretty;">Присоединяйтесь к сообществу собственников и руководителей производственных компаний, которые развивают промышленность вместе.</p>
+      </div>
+
+      <div data-s15-card="" id="apply" style="min-width: 0; background: rgba(0,0,0,.6); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-radius: 32px; padding: 48px; box-sizing: border-box;">
+
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <div style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF;">Заявка отправлена</div>
+            <div style="font-size: 17px; line-height: 26px; color: rgba(255,255,255,.8);">Свяжемся с вами в течение рабочего дня</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="font-size: 24px; line-height: 32px; font-weight: 500; color: #FFFFFF;">Заявка на участие</div>
+            <div style="margin-top: 8px; font-size: 15px; line-height: 22px; color: rgba(255,255,255,.6);">Ответим в течение рабочего дня.</div>
+
+            <div style="margin-top: 32px; display: flex; flex-direction: column; gap: 20px;">
+              <input type="text" placeholder="Имя и фамилия" value="{{ name }}" onChange="{{ onName }}" style="width: 100%; box-sizing: border-box; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 16px 20px; font-family: Pangea, Montserrat, sans-serif; font-size: 17px; line-height: 24px; color: #FFFFFF; outline: none;" style-focus="border-color: #854DFF;">
+              <input type="tel" placeholder="Телефон" value="{{ phone }}" onChange="{{ onPhone }}" style="width: 100%; box-sizing: border-box; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 16px 20px; font-family: Pangea, Montserrat, sans-serif; font-size: 17px; line-height: 24px; color: #FFFFFF; outline: none;" style-focus="border-color: #854DFF;">
+              <input type="email" placeholder="Email" value="{{ email }}" onChange="{{ onEmail }}" style="width: 100%; box-sizing: border-box; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 16px 20px; font-family: Pangea, Montserrat, sans-serif; font-size: 17px; line-height: 24px; color: #FFFFFF; outline: none;" style-focus="border-color: #854DFF;">
+              <input type="text" placeholder="Компания" value="{{ company }}" onChange="{{ onCompany }}" style="width: 100%; box-sizing: border-box; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 16px 20px; font-family: Pangea, Montserrat, sans-serif; font-size: 17px; line-height: 24px; color: #FFFFFF; outline: none;" style-focus="border-color: #854DFF;">
+              <select value="{{ revenue }}" onChange="{{ onRevenue }}" style="width: 100%; box-sizing: border-box; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 16px 20px; font-family: Pangea, Montserrat, sans-serif; font-size: 17px; line-height: 24px; color: #FFFFFF; outline: none; appearance: none;" style-focus="border-color: #854DFF;">
+                <option value="" style="color: #0C0C0C;">Годовой оборот</option>
+                <option value="до 100 млн ₽" style="color: #0C0C0C;">до 100 млн ₽</option>
+                <option value="100–500 млн ₽" style="color: #0C0C0C;">100–500 млн ₽</option>
+                <option value="500 млн – 1 млрд ₽" style="color: #0C0C0C;">500 млн – 1 млрд ₽</option>
+                <option value="более 1 млрд ₽" style="color: #0C0C0C;">более 1 млрд ₽</option>
+              </select>
+            </div>
+
+            <div style="margin-top: 24px; display: flex; align-items: flex-start; gap: 12px;">
+              <div onClick="{{ toggleAgree }}" style="flex: none; width: 20px; height: 20px; border-radius: 6px; border: 1px solid rgba(255,255,255,.3); display: flex; align-items: center; justify-content: center; cursor: pointer; background: {{ checkboxBg }};">
+                <sc-if value="{{ agree }}" hint-placeholder-val="{{ false }}">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </sc-if>
+              </div>
+              <div style="font-size: 13px; line-height: 20px; color: rgba(255,255,255,.6);">Согласен на обработку <a href="#apply" style="color: #FFFFFF; text-decoration: underline;">персональных данных</a></div>
+            </div>
+
+            <button type="button" onClick="{{ submit }}" disabled="{{ disabled }}" style="margin-top: 32px; width: 100%; background: #FFFFFF; color: #0C0C0C; border: none; border-radius: 999px; padding: 20px; font-family: Pangea, Montserrat, sans-serif; font-size: 17px; line-height: 24px; font-weight: 500; transition: opacity 180ms ease; opacity: {{ btnOpacity }}; cursor: {{ btnCursor }};">{{ btnLabel }}</button>
+
+            <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top: 16px; font-size: 14px; line-height: 20px; color: #FF8A80;">{{ error }}</div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer style="width: 100%; background: #000000; padding: 80px 0 40px;">
+  <div style="width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 80px; box-sizing: border-box;">
+
+    <div data-f-top="" style="display: grid; grid-template-columns: 4fr 2fr 2fr 2fr; gap: 48px; align-items: start;">
+
+      <div style="min-width: 0;">
+        <img src="brand/logo-base-white.svg" alt="АПЛ — Академия промышленных лидеров" style="display: block; height: 36px; width: auto;">
+        <div style="margin-top: 20px; max-width: 280px; font-size: 15px; line-height: 24px; color: rgba(255,255,255,.6); text-wrap: pretty;">Закрытое сообщество собственников и руководителей производственных компаний.</div>
+      </div>
+
+      <div style="min-width: 0;">
+        <div style="font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: rgba(179,179,179,.5);">Академия</div>
+        <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
+          <a href="#program" style="font-size: 15px; line-height: 24px; color: rgba(255,255,255,.7); text-decoration: none;" style-hover="color: #FFFFFF; text-decoration: none;">О программе</a>
+          <a href="#council" style="font-size: 15px; line-height: 24px; color: rgba(255,255,255,.7); text-decoration: none;" style-hover="color: #FFFFFF; text-decoration: none;">Экспертный совет</a>
+          <a href="#visits" style="font-size: 15px; line-height: 24px; color: rgba(255,255,255,.7); text-decoration: none;" style-hover="color: #FFFFFF; text-decoration: none;">Производственные визиты</a>
+          <a href="#selection" style="font-size: 15px; line-height: 24px; color: rgba(255,255,255,.7); text-decoration: none;" style-hover="color: #FFFFFF; text-decoration: none;">Отбор</a>
+        </div>
+      </div>
+
+      <div style="min-width: 0;">
+        <div style="font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: rgba(179,179,179,.5);">Контакты</div>
+        <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
+          <a href="#apply" style="font-size: 15px; line-height: 24px; color: rgba(255,255,255,.7); text-decoration: none;" style-hover="color: #FFFFFF; text-decoration: none;">[телефон]</a>
+          <a href="#apply" style="font-size: 15px; line-height: 24px; color: rgba(255,255,255,.7); text-decoration: none;" style-hover="color: #FFFFFF; text-decoration: none;">[email]</a>
+        </div>
+      </div>
+
+      <div style="min-width: 0;">
+        <div style="font-size: 12px; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: rgba(179,179,179,.5);">Документы</div>
+        <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
+          <a href="#apply" style="font-size: 15px; line-height: 24px; color: rgba(255,255,255,.7); text-decoration: none;" style-hover="color: #FFFFFF; text-decoration: none;">Политика конфиденциальности</a>
+          <a href="#apply" style="font-size: 15px; line-height: 24px; color: rgba(255,255,255,.7); text-decoration: none;" style-hover="color: #FFFFFF; text-decoration: none;">Согласие на обработку персональных данных</a>
+          <a href="#apply" style="font-size: 15px; line-height: 24px; color: rgba(255,255,255,.7); text-decoration: none;" style-hover="color: #FFFFFF; text-decoration: none;">Договор оферты</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 64px; height: 1px; background: rgba(255,255,255,.08);"></div>
+
+    <div data-f-bottom="" style="margin-top: 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+      <div style="font-size: 13px; line-height: 20px; color: rgba(255,255,255,.4);">ИП Васильцова Юлия Вячеславовна · ИНН 614002361771 · ОГРНИП 321619600172998</div>
+      <div style="font-size: 13px; line-height: 20px; color: rgba(255,255,255,.4); white-space: nowrap;">© 2026 АПЛ</div>
+    </div>
+
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const id = '__aps-responsive';
+    if (document.getElementById(id)) return;
+    const el = document.createElement('style');
+    el.id = id;
+    el.textContent = `
+@media (max-width: 1199px) {
+  [data-s2-bento] { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: none !important; }
+  [data-s2-tile] { grid-column: auto !important; grid-row: auto !important; min-height: 150px; padding: 28px !important; }
+  [data-s2-tail] { font-size: 22px !important; line-height: 30px !important; }
+  [data-s6-metrics] { grid-template-columns: repeat(3, 1fr) !important; row-gap: 48px !important; }
+  [data-s15-grid] { column-gap: 48px !important; }
+  [data-f-top] { grid-template-columns: repeat(2, 1fr) !important; gap: 40px !important; }
+  [data-s15-card] { padding: 32px !important; }
+  [data-s13-grid] { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: none !important; }
+  [data-s13-tile] { grid-column: auto !important; grid-row: auto !important; min-height: 220px; padding: 28px !important; }
+  [data-s13-name] { font-size: 20px !important; line-height: 28px !important; }
+  [data-s8-grid] { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: none !important; }
+  [data-s8-tile] { grid-column: auto !important; grid-row: auto !important; min-height: 200px; padding: 28px !important; }
+  [data-s8-text] { font-size: 20px !important; line-height: 28px !important; }
+  [data-s6-num] { font-size: 36px !important; line-height: 42px !important; }
+  [data-s6-cap] { font-size: 14px !important; line-height: 20px !important; }
+  [data-s5b-tile] { padding: 24px !important; }
+  [data-s5b-cap] { font-size: 15px !important; line-height: 22px !important; }
+  [style*="max-width: 1320px"] { padding-left: 40px !important; padding-right: 40px !important; }
+  [data-s7-grid] { grid-template-columns: repeat(3, 1fr) !important; row-gap: 48px !important; }
+  [data-s10-card] { padding: 32px !important; }
+  [data-s10-name] { font-size: 20px !important; line-height: 28px !important; }
+  [data-s9-grid] { grid-template-columns: 1fr !important; }
+  [data-s9-labels] { display: none !important; }
+  [data-s9-result] { margin-left: 0 !important; }
+  [data-s9-kpi] { padding: 24px !important; }
+}
+@media (max-width: 767px) {
+  /* Главный фикс мобильной вёрстки: боковые поля контент-обёрток
+     (в исходнике жёстко 80px, на узком экране съедали контент). */
+  [style*="max-width: 1320px"] { padding-left: 20px !important; padding-right: 20px !important; }
+  /* Редакционные 12-колоночные сетки заголовков → одна колонка на всю ширину */
+  [style*="grid-template-columns: repeat(12"] { grid-template-columns: 1fr !important; }
+  [style*="grid-column: span 8"], [style*="grid-column: span 7"] { grid-column: 1 / -1 !important; }
+  /* Hero: снимаем height:100vh/min-height:720px, компактные отступы и заголовок */
+  [data-screen-label="01 Hero"] { height: auto !important; min-height: 0 !important; }
+  [data-screen-label="01 Hero"] > div:last-child { min-height: 0 !important; height: auto !important; padding-top: 96px !important; padding-bottom: 56px !important; }
+  [data-screen-label="01 Hero"] h1 { font-size: clamp(34px, 9vw, 48px) !important; }
+  /* Компактнее вертикальные отступы крупных секций (в исходнике 128–160px) */
+  [data-screen-label="02 Проблема"],
+  [data-screen-label="03 Почему так происходит"],
+  [data-screen-label="06 Почему нам доверяют"],
+  [data-screen-label="07 Экспертный совет"],
+  [data-screen-label="09 Как проходит программа"],
+  [data-screen-label="10 Программа"] { padding-top: 56px !important; padding-bottom: 56px !important; }
+  [data-screen-label="05b Факты"] { padding-top: 56px !important; padding-bottom: 56px !important; }
+  [data-s3-row] { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+  [data-s3-dim] { min-height: 112px !important; padding: 20px !important; font-size: 17px !important; line-height: 22px !important; overflow-wrap: normal !important; hyphens: auto; }
+  [data-s3-hero-tile] { padding: 32px !important; }
+  [data-s3-hero-text] { font-size: 22px !important; line-height: 30px !important; }
+  [data-s3-h2] { font-size: 24px !important; line-height: 30px !important; }
+  [data-s3-tail] { font-size: 20px !important; line-height: 26px !important; }
+  [data-s5b-grid] { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: none !important; gap: 16px !important; }
+  [data-s5b-tile] { grid-column: auto !important; grid-row: auto !important; min-height: 136px; padding: 24px !important; border-radius: 24px !important; }
+  [data-s5b-accent] { grid-column: 1 / -1 !important; }
+  [data-s15] { padding: 72px 0 !important; }
+  [data-s15-grid] { grid-template-columns: 1fr !important; column-gap: 0 !important; }
+  [data-s15-card] { padding: 28px !important; }
+  [data-s15-h] { font-size: 32px !important; line-height: 40px !important; }
+  [data-s15-br] { display: none !important; }
+  [data-s15-sub] { font-size: 17px !important; line-height: 26px !important; }
+  [data-s15-cta] > a { width: 100%; }
+  [data-f-top] { grid-template-columns: 1fr !important; gap: 40px !important; }
+  [data-f-bottom] { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+  [data-s14-step] { height: auto !important; padding: 32px 0 !important; }
+  [data-s14-num] { font-size: 120px !important; }
+  [data-s14-name] { font-size: 24px !important; line-height: 30px !important; }
+  [data-s14-desc] { font-size: 16px !important; line-height: 24px !important; }
+  [data-s14-h2] { font-size: 24px !important; line-height: 30px !important; }
+  [data-s13-grid] { grid-template-columns: 1fr !important; grid-template-rows: none !important; gap: 16px !important; }
+  [data-s13-tile] { grid-column: auto !important; grid-row: auto !important; padding: 24px !important; }
+  [data-s13-name] { font-size: 20px !important; line-height: 26px !important; }
+  [data-s12] { padding: 56px 0 !important; }
+  [data-s12-line] { font-size: 32px !important; line-height: 38px !important; }
+  [data-s12-second] { margin-top: 8px !important; }
+  [data-s11-hero] { height: 360px !important; }
+  [data-s11-plate] { left: 20px !important; right: 20px; bottom: 20px !important; width: auto !important; max-width: none !important; padding: 24px !important; }
+  [data-s11-line] { font-size: 20px !important; line-height: 26px !important; }
+  [data-s11-row] { display: flex !important; overflow-x: auto; }
+  [data-s11-thumb] { flex: none; width: 260px; height: 200px !important; }
+  [data-s9-h2] { font-size: 24px !important; line-height: 30px !important; }
+  [data-s8-grid] { grid-template-columns: 1fr !important; grid-template-rows: none !important; gap: 16px !important; }
+  [data-s8-tile] { grid-column: auto !important; grid-row: auto !important; padding: 24px !important; }
+  [data-s8-text] { font-size: 20px !important; line-height: 26px !important; }
+  [data-s8-h2] { font-size: 24px !important; line-height: 30px !important; }
+  [data-s6-metrics] { grid-template-columns: repeat(2, 1fr) !important; gap: 32px 24px !important; }
+  [data-s6-col] { flex-direction: column !important; gap: 16px !important; }
+  [data-s6-line] { width: 100% !important; height: 3px !important; }
+  [data-s6-stem] { left: 0 !important; top: 1px !important; bottom: auto !important; right: 4px; width: auto !important; height: 1px; }
+  [data-s6-dot] { bottom: auto !important; top: 0; left: auto !important; right: 0; }
+  [data-s6-num] { font-size: 32px !important; line-height: 38px !important; }
+  [data-s6-cap] { font-size: 14px !important; line-height: 20px !important; }
+  [data-s6-item] { font-size: 16px !important; line-height: 24px !important; }
+  [data-s6-h2] { font-size: 24px !important; line-height: 30px !important; }
+  [data-s5b-num] { font-size: 36px !important; line-height: 40px !important; }
+  [data-s5b-cap] { font-size: 14px !important; line-height: 20px !important; hyphens: auto; }
+  [data-s5b-tile] { padding: 20px !important; }
+  [data-s5b-full] [data-s5b-cap], [data-s5b-accent] [data-s5b-cap] { hyphens: manual; }
+  /* Ручные переносы в заголовках рассчитаны на десктоп — на телефоне текст переносится сам */
+  h2 br, [data-s8-h2] br { display: none; }
+  [data-s2-bento] { grid-template-columns: 1fr !important; grid-template-rows: none !important; gap: 16px !important; }
+  [data-s2-tile] { grid-column: auto !important; grid-row: auto !important; font-size: 20px !important; line-height: 26px !important; padding: 24px !important; }
+  [data-s2-h2] { font-size: 24px !important; line-height: 30px !important; }
+  [data-s2-tail] { font-size: 20px !important; line-height: 26px !important; }
+  /* Факты: №1 и «награды» встают парой, «220 млн» и «международный опыт» — во всю ширину */
+  [data-s5b-grid] { grid-auto-flow: dense; }
+  [data-s5b-full] { grid-column: 1 / -1 !important; }
+  /* Крупные номера шагов «Как попасть»: не уводим за правый край (в исходнике
+     right:-24px внутри overflow:hidden обрезал цифру) — уменьшаем и вводим в кадр */
+  [data-s14-num] { font-size: 96px !important; right: 8px !important; }
+  [data-s5b-h2] { font-size: 24px !important; line-height: 30px !important; }
+  [data-s7-h2] { font-size: 24px !important; line-height: 30px !important; }
+  [data-s7-grid] { grid-template-columns: repeat(2, 1fr) !important; gap: 32px 16px !important; }
+  [data-s7-photo] { border-radius: 24px !important; }
+  [data-s7-name] { margin-top: 16px !important; font-size: 17px !important; line-height: 22px !important; }
+  [data-s7-role] { font-size: 13px !important; line-height: 18px !important; }
+  [data-s10-grid] { grid-template-columns: 1fr !important; gap: 16px !important; }
+  [data-s10-card] { padding: 24px !important; border-radius: 24px !important; }
+  [data-s10-num] { font-size: 32px !important; line-height: 36px !important; }
+  [data-s10-name] { font-size: 20px !important; line-height: 26px !important; }
+  [data-s10-item] { font-size: 16px !important; line-height: 24px !important; }
+  [data-s10-h2] { font-size: 24px !important; line-height: 30px !important; }
+  [data-s9-lead] { font-size: 17px !important; line-height: 26px !important; }
+  [data-s9-bento] { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: none !important; gap: 16px !important; }
+  [data-s9-photo] { grid-column: 1 / -1 !important; grid-row: auto !important; min-height: 240px !important; }
+  [data-s9-kpi] { grid-column: auto !important; grid-row: auto !important; min-height: 132px !important; padding: 20px !important; border-radius: 24px !important; }
+  [data-s9-kpi-num] { font-size: 48px !important; }
+  [data-s9-timeline] { padding: 20px !important; border-radius: 24px !important; }
+  [data-s9-cols] { grid-template-columns: repeat(2, 1fr) !important; gap: 28px 12px !important; }
+  [data-s9-chart] { height: 160px !important; }
+  [data-s9-fill] { min-height: 48px; }
+  [data-s9-module] { height: auto !important; gap: 6px; padding: 14px !important; }
+  [data-s9-online] > div:not([data-s9-online-cap]) { width: 32px !important; height: 32px !important; border-radius: 10px !important; }
+  [data-s9-online] { height: auto !important; gap: 6px !important; flex-wrap: wrap; }
+  [data-s9-result] { flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; padding: 18px 20px !important; }
+  [data-s9-result] > div:last-child { text-align: left !important; }
+  [data-s9-cols]:hover [data-s9-col]:not(:hover) { opacity: 1; }
+}`;
+    document.head.appendChild(el);
+
+    const s9 = document.querySelector('[data-s9]');
+    if (s9 && 'IntersectionObserver' in window) {
+      s9.setAttribute('data-s9-anim', '');
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) { s9.setAttribute('data-s9-in', ''); this._io.disconnect(); }
+        });
+      }, { threshold: 0.25 });
+      const tl = s9.querySelector('[data-s9-timeline]');
+      this._io.observe(tl || s9);
+    }
+
+    const header = document.querySelector('[data-fixed-header]');
+    const sync = () => {
+      if (!header) return;
+      const on = window.scrollY > window.innerHeight;
+      header.style.opacity = on ? '1' : '0';
+      header.style.transform = on ? 'translateY(0)' : 'translateY(-100%)';
+      header.style.pointerEvents = on ? 'auto' : 'none';
+    };
+    this._sync = sync;
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+
+    const cta = document.querySelector('[data-header-cta]');
+    if (cta) {
+      this._cta = (e) => {
+        const target = document.querySelector('[data-screen-label="15 Финал"]');
+        if (!target) return;
+        e.preventDefault();
+        window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - 72, behavior: 'smooth' });
+      };
+      cta.addEventListener('click', this._cta);
+    }
+  }
+  componentWillUnmount() {
+    if (this._sync) { window.removeEventListener('scroll', this._sync); window.removeEventListener('resize', this._sync); }
+    if (this._io) this._io.disconnect();
+  }
+  state = { name: '', phone: '', email: '', company: '', revenue: '', agree: false, sent: false, sending: false, error: '' };
+  set(k) { return (e) => this.setState({ [k]: e.target.value }); }
+  renderVals() {
+    const s = this.state;
+    const valid = !!(s.name.trim() && s.phone.trim() && s.email.trim() && s.company.trim() && s.revenue && s.agree);
+    const busy = s.sending;
+    return {
+      ...s,
+      notSent: !s.sent,
+      hasError: !!s.error,
+      onName: this.set('name'), onPhone: this.set('phone'), onEmail: this.set('email'),
+      onCompany: this.set('company'), onRevenue: this.set('revenue'),
+      toggleAgree: () => this.setState(p => ({ agree: !p.agree })),
+      checkboxBg: s.agree ? '#854DFF' : 'transparent',
+      disabled: !valid || busy,
+      btnOpacity: (valid && !busy) ? 1 : 0.4,
+      btnCursor: busy ? 'wait' : (valid ? 'pointer' : 'not-allowed'),
+      btnLabel: busy ? 'Отправляем…' : 'Отправить заявку',
+      submit: async () => {
+        if (!valid || s.sending) return;
+        this.setState({ sending: true, error: '' });
+        try {
+          const res = await fetch('/api/apply', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: s.name, phone: s.phone, email: s.email,
+              company: s.company, revenue: s.revenue
+            })
+          });
+          if (!res.ok) throw new Error('http ' + res.status);
+          this.setState({ sent: true, sending: false });
+        } catch (err) {
+          this.setState({ sending: false, error: 'Не удалось отправить заявку. Попробуйте ещё раз или напишите нам напрямую.' });
+        }
+      }
+    };
+  }
+}
+</script>
+
+<!-- Cookie consent — АПЛ design system (vanilla, independent of dc-runtime) -->
+<script>
+(function () {
+  var KEY = 'aps-cookie-consent';
+  try { if (localStorage.getItem(KEY)) return; } catch (e) { return; }
+
+  function init() {
+    if (document.getElementById('aps-cookie')) return;
+
+    var style = document.createElement('style');
+    style.textContent =
+      '#aps-cookie{position:fixed;left:0;right:0;bottom:0;z-index:1000;' +
+      'padding:0 20px 20px;box-sizing:border-box;' +
+      'font-family:Pangea,Montserrat,sans-serif;-webkit-font-smoothing:antialiased;' +
+      'opacity:0;transform:translateY(16px);transition:opacity 400ms ease,transform 400ms ease;pointer-events:none;}' +
+      '#aps-cookie.aps-in{opacity:1;transform:translateY(0);pointer-events:auto;}' +
+      '#aps-cookie .aps-cc-inner{width:100%;max-width:1320px;margin:0 auto;box-sizing:border-box;' +
+      'background:#1F2125;border:1px solid rgba(255,255,255,.08);border-radius:24px;' +
+      'padding:24px 28px;display:flex;align-items:center;gap:24px;}' +
+      '#aps-cookie .aps-cc-text{flex:1 1 auto;min-width:0;font-size:14px;line-height:20px;color:rgba(255,255,255,.7);text-wrap:pretty;}' +
+      '#aps-cookie .aps-cc-text a{color:#FFFFFF;text-decoration:underline;}' +
+      '#aps-cookie .aps-cc-actions{flex:0 0 auto;display:flex;align-items:center;gap:12px;}' +
+      '#aps-cookie button{font-family:Pangea,Montserrat,sans-serif;font-size:14px;line-height:20px;font-weight:500;' +
+      'border-radius:999px;padding:12px 28px;cursor:pointer;border:1px solid transparent;white-space:nowrap;' +
+      'transition:opacity 180ms ease,background 180ms ease,border-color 180ms ease;}' +
+      '#aps-cookie .aps-cc-accept{background:#854DFF;color:#FFFFFF;}' +
+      '#aps-cookie .aps-cc-accept:hover{opacity:.85;}' +
+      '#aps-cookie .aps-cc-decline{background:transparent;color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.18);}' +
+      '#aps-cookie .aps-cc-decline:hover{color:#FFFFFF;border-color:rgba(255,255,255,.4);}' +
+      '@media (max-width:767px){' +
+      '#aps-cookie .aps-cc-inner{flex-direction:column;align-items:stretch;gap:20px;padding:24px;border-radius:20px;}' +
+      '#aps-cookie .aps-cc-actions{flex-direction:column;}' +
+      '#aps-cookie button{width:100%;}}';
+    document.head.appendChild(style);
+
+    var bar = document.createElement('div');
+    bar.id = 'aps-cookie';
+    bar.setAttribute('role', 'dialog');
+    bar.setAttribute('aria-label', 'Согласие на использование cookie');
+    bar.innerHTML =
+      '<div class="aps-cc-inner">' +
+        '<div class="aps-cc-text">Мы используем файлы cookie, чтобы сайт работал корректно и был удобным. ' +
+        'Оставаясь на сайте, вы соглашаетесь с их использованием. ' +
+        'Подробнее — в <a href="#apply">Политике конфиденциальности</a>.</div>' +
+        '<div class="aps-cc-actions">' +
+          '<button type="button" class="aps-cc-decline">Только необходимые</button>' +
+          '<button type="button" class="aps-cc-accept">Принять</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(bar);
+
+    requestAnimationFrame(function () { bar.classList.add('aps-in'); });
+
+    function close(value) {
+      try { localStorage.setItem(KEY, value); } catch (e) {}
+      bar.classList.remove('aps-in');
+      setTimeout(function () { if (bar.parentNode) bar.parentNode.removeChild(bar); }, 450);
+    }
+    bar.querySelector('.aps-cc-accept').addEventListener('click', function () { close('accepted'); });
+    bar.querySelector('.aps-cc-decline').addEventListener('click', function () { close('necessary'); });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
